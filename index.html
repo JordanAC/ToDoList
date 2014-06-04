@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="css/Style-To-Do.css"></link>
+	<script>
+
+	var taskList = [];
+	var completedTask = [];
+	
+	function restoreTask(){
+		var data = sessionStorage.getItem("taskList");
+		if(data){
+		taskList = JSON.parse(data);
+		}
+	}
+	
+	function restoreCompletedTask(){
+		var data = sessionStorage.getItem("completedTask");
+		if(data){
+		completedTask = JSON.parse(data);
+		}
+	}
+	
+	function showCompletedTask() {
+		$(".thelistC").css("display", "block");
+		$(".thelist").css("display","none");
+	}
+	
+	function showTask() {
+		$(".thelistC").css("display", "none");
+		$(".thelist").css("display","block");
+	}
+	
+	function addTask(t) {
+	 taskList.push(t);
+	}
+	
+	function addCompletedTask(t){
+	 completedTask.push(t);
+	}
+	
+	function removeTask(array, t){
+		var j = array.indexOf(t);
+		if(j> -1){
+			array.splice(j,1);
+		}
+	}
+	
+	function generateTask() {
+		$(".thelist").empty();
+		for(var i = 0; i < taskList.length; i++){
+		$("#to-do-list-group .thelist").append('<li>'+ taskList[i]
+				+ '<img src = "images/grey-check.png" id="not-complete" class="check" ></img><img src = "images/redx.png" id="remove"></img>'
+				+'</li>');	
+		}
+	}
+	
+	function generateTaskC() {
+		$(".thelistC").empty();
+		for(var i = 0; i < completedTask.length; i++){
+		$("#to-do-list-group .thelistC").append('<li>'+ completedTask[i]
+				+ '<img src = "images/green-check.png" id="completed" class="check" ></img><img src = "images/redx.png" id="remove"></img>'
+				+'</li>');	
+		}
+	}
+	
+		$(document).ready(function(){
+		var new_task;
+			$('.enter').click( function (e){
+				e.preventDefault();
+				new_task = $("#task").val();
+				addTask(new_task);
+				generateTask();
+			});
+			
+			$(document).on("click",'#to-do-list-group .check', function() {
+				var ctask;
+				if($(this).attr("id") == "not-complete"){
+					$(this).attr("id","completed");
+					$(this).attr("src","images/green-check.png");
+					ctask = $(this).closest("li").text();
+					addCompletedTask(ctask);
+					generateTaskC();
+					
+				} else {
+					$(this).attr("id","not-complete");
+					$(this).attr("src","images/grey-check.png");
+					ctask = $(this).closest("li").text();
+					removeTask(completedTask,ctask);
+					generateTask();
+					generateTaskC();
+					}
+			});
+
+			$(document).on("click",'#to-do-list-group #remove', function() {
+				ctask = $(this).closest("li").text();
+				removeTask(taskList,ctask);
+				removeTask(completedTask,ctask);
+				generateTask();
+				generateTaskC();
+			});				
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<h1 class="form-head"> To Do List</h1>
+			<form id="to-do-form">
+			<input type="text" placeholder="Things To Do" name="to-do" id="task" >
+			<input class="enter" type="submit" name="submit" value="Add To List">
+			</form>
+			<div id="to-do-list-group">
+				<ul class="thelist">
+				
+				</ul>
+				<ul class="thelistC">
+				
+				</ul>
+				<ul class="sort">
+					<li id="all" onclick=""><a onclick="showTask()"> ALL </a></li>
+					<li id="completed"><a onclick="showCompletedTask()"> COMPLETED </a></li>
+				</ul>
+			</div>
+			<div id="instructions">
+				<p>
+					Green arrow means you completed your task.<br>
+					Clicking "all" displays all task. Same applies for "completed".
+				</p>
+			</div>
+	</div>
+</body>
+</html>
