@@ -71,6 +71,7 @@
 			$('.enter').click( function (e){
 				e.preventDefault();
 				new_task = $("#task").val();
+				$(this).closest("form").find("input[type=text]").val("");
 				addTask(new_task);
 				generateTask();
 			});
