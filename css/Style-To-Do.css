@@ -1,0 +1,115 @@
+/* CSS Document */
+
+body{
+  padding-top: 40px;
+  background-color: #F2F5A9;
+}
+
+.form-head {
+  font-family: "Brush Script MT", cursive;
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+}
+
+#to-do-form {
+  max-width: 360px;
+  padding: 25px;
+  margin: 0 auto;
+  
+}
+
+#to-do-form input[type="text"] {
+  position: relative;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5%;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+#to-do-form input[type="submit"] {
+ background: #0000FF;
+ font-family: "Brush Script MT", cursive;
+ color: white;
+ font-weight: bold;
+ font-size: 20px;
+ letter-spacing: 1px;
+ width: 100%;
+}
+
+#to-do-list-group {
+ margin: 0 auto;
+ max-width: 360px;
+ padding: 5px;
+ border: solid 1px;
+ border-radius: 3%;
+}
+
+#to-do-list-group .thelist {
+ list-style-type: none;
+ font-family: "Brush Script MT", cursive;
+ padding: 0;
+ margin: 0;
+ display: block;
+}
+
+#to-do-list-group .thelist li {
+ min-height: 50px;
+ height: auto;
+ font-size: 24px;
+ border-bottom: dashed 1px;
+ text-align: left;
+ word-wrap: break-word;
+ 
+}
+
+#to-do-list-group .thelistC {
+ list-style-type: none;
+ font-family: "Brush Script MT", cursive;
+ padding: 0;
+ margin: 0;
+ display: none;
+}
+
+#to-do-list-group .thelistC li {
+ min-height: 50px;
+ height: auto;
+ font-size: 24px;
+ border-bottom: dashed 1px;
+ text-align: left;
+ word-wrap: break-word;
+ 
+}
+
+#to-do-list-group .sort {
+	list-style-type: none;
+	
+}
+
+#to-do-list-group .sort li {
+	display: inline;
+	width: 50%;
+	margin-left: 20%;
+}
+
+#to-do-list-group #remove {
+ height: 30px;
+ float: right;
+}
+
+#to-do-list-group #completed {
+ height: 30px;
+ float: right;
+}
+
+#to-do-list-group #not-complete {
+ height: 30px;
+ float: right;
+}
+
+#instructions p {
+ font-family: "Brush Script MT", cursive;
+ text-align: center;
+}
